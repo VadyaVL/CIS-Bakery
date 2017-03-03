@@ -12,12 +12,31 @@ public class Production {
 	private int id;
 	private String name;
 	private float countOnStorage;	// Кількість наявного на складі
+	
 	// Реалізація Many-to-Many з додатковим полем ціна
 	private Map<Place, Float> placePrice = new LinkedHashMap<>();
 
 	// Реалізація Many-to-Many з додатковим полем кількість
 	private Map<Ingridient, Float> ingridientCount = new LinkedHashMap<>();
 	
+	// Реалізація Many-to-Many з додатковим полем кількість
+	private Map<Request, Float> requestCount = new LinkedHashMap<>();
+	
+	// Реалізація Many-to-Many з додатковим полем кількість
+	private Map<OldNewReport, Float> oldNewReportCount = new LinkedHashMap<>();
+	
+
+	private Map<TheProductionReportTeam, Float> brak = new LinkedHashMap<>();
+	private Map<TheProductionReportTeam, Float> poduced = new LinkedHashMap<>();
+	
+	public Map<Ingridient, Float> getIngridientCount() {
+		return ingridientCount;
+	}
+
+	public void setIngridientCount(Map<Ingridient, Float> ingridientCount) {
+		this.ingridientCount = ingridientCount;
+	}
+
 	public Production(int id, String name, float cntOnStorage){
 		setId(id);
 		setName(name);

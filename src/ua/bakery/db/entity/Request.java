@@ -1,6 +1,8 @@
 package ua.bakery.db.entity;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * 
@@ -15,6 +17,9 @@ public class Request {
 
 	private Client client;
 	private User user;
+	
+	// Реалізація Many-to-Many з додатковим полем кількість
+	private Map<Production, Float> productionCount = new LinkedHashMap<>();
 	
 	
 	public Request(int id, Date dR, Date dO, boolean ok){

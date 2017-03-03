@@ -46,5 +46,13 @@ public class Ingridient {
 	public void setCountOnStorage(float countOnStorage) {
 		this.countOnStorage = countOnStorage;
 	}
+
+	public Map<Production, Float> getProductionCount() {
+		return productionCount;
+	}
+
+	public void setProductionCount(Map<Production, Float> productionCount) {
+		this.productionCount = productionCount;
+	}
 	
 }
