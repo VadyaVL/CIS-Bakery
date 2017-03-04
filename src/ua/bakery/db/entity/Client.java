@@ -19,6 +19,11 @@ public class Client {
 		this(-1, name);
 	}
 	
+	@Override
+	public String toString(){
+		return "Êë³ºíò ¹" + id + ": " + name;
+	}
+	
 	public int getId() {
 		return id;
 	}

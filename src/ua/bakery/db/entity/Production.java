@@ -26,6 +26,38 @@ public class Production {
 	private Map<OldNewReport, Float> oldNewReportCount = new LinkedHashMap<>();
 	
 
+	public Map<Request, Float> getRequestCount() {
+		return requestCount;
+	}
+
+	public void setRequestCount(Map<Request, Float> requestCount) {
+		this.requestCount = requestCount;
+	}
+
+	public Map<OldNewReport, Float> getOldNewReportCount() {
+		return oldNewReportCount;
+	}
+
+	public void setOldNewReportCount(Map<OldNewReport, Float> oldNewReportCount) {
+		this.oldNewReportCount = oldNewReportCount;
+	}
+
+	public Map<TheProductionReportTeam, Float> getBrak() {
+		return brak;
+	}
+
+	public void setBrak(Map<TheProductionReportTeam, Float> brak) {
+		this.brak = brak;
+	}
+
+	public Map<TheProductionReportTeam, Float> getPoduced() {
+		return poduced;
+	}
+
+	public void setPoduced(Map<TheProductionReportTeam, Float> poduced) {
+		this.poduced = poduced;
+	}
+
 	private Map<TheProductionReportTeam, Float> brak = new LinkedHashMap<>();
 	private Map<TheProductionReportTeam, Float> poduced = new LinkedHashMap<>();
 	

@@ -22,6 +22,14 @@ public class Request {
 	private Map<Production, Float> productionCount = new LinkedHashMap<>();
 	
 	
+	public Map<Production, Float> getProductionCount() {
+		return productionCount;
+	}
+
+	public void setProductionCount(Map<Production, Float> productionCount) {
+		this.productionCount = productionCount;
+	}
+
 	public Request(int id, Date dR, Date dO, boolean ok){
 		setId(id);
 		setDateRequest(dR);
@@ -31,6 +39,12 @@ public class Request {
 	
 	public Request(Date dR, Date dO, boolean ok){
 		this(-1, dR, dO, ok); 
+	}
+	
+
+	@Override
+	public String toString(){
+		return "Заявка №" + id + ": " + dateOformleniya + ": " + (ok ? "виконано": "не виконано");
 	}
 	
 	public int getId() {
@@ -80,7 +94,4 @@ public class Request {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
-	
 }

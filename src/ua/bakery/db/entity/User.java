@@ -36,7 +36,7 @@ public class User {
 	public String toString(){
 		return "[" + this.getClass().getName() + "] - id: " + id + ", username: " + username + ", password: " +
 				password + ", real name: " + realName + ", photo: " + photo + ", access level: " + accessLevel + "\n" +
-				"Logs:\n" + getLogsAsString();
+				"Logs:\n" /*+ getLogsAsString()*/;
 	}
 	
 	public String getLogsAsString(){

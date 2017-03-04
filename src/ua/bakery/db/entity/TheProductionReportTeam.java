@@ -18,6 +18,22 @@ public class TheProductionReportTeam {
 
 	// Реалізація Many-to-Many з додатковим полем кількість
 	private Map<Production, Float> brak = new LinkedHashMap<>();
+	public Map<Production, Float> getBrak() {
+		return brak;
+	}
+
+	public void setBrak(Map<Production, Float> brak) {
+		this.brak = brak;
+	}
+
+	public Map<Production, Float> getPoduced() {
+		return poduced;
+	}
+
+	public void setPoduced(Map<Production, Float> poduced) {
+		this.poduced = poduced;
+	}
+
 	private Map<Production, Float> poduced = new LinkedHashMap<>();
 	
 	public TheProductionReportTeam(int id, Date dateTime, User user){

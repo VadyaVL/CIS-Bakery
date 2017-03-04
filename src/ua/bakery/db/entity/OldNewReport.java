@@ -11,6 +11,14 @@ public class OldNewReport {
 	private boolean old;
 	private User user;
 
+	public Map<Production, Float> getProductionCount() {
+		return productionCount;
+	}
+
+	public void setProductionCount(Map<Production, Float> productionCount) {
+		this.productionCount = productionCount;
+	}
+
 	// Реалізація Many-to-Many з додатковим полем кількість
 	private Map<Production, Float> productionCount = new LinkedHashMap<>();
 	

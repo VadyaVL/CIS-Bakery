@@ -7,6 +7,6 @@ public final class ProgramSettings {
 
 	private ProgramSettings() { }
 	
-	public static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	public static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 }
