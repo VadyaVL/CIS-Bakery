@@ -1,4 +1,4 @@
-package ua.bakery.main;
+package ua.bakery.services;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

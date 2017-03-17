@@ -1,4 +1,4 @@
-package ua.bakery.main;
+package ua.bakery.services;
 
 /**
  * Призначення - зберження констант.

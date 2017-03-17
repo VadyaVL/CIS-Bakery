@@ -1,36 +1,36 @@
-package ua.bakery.db.entity;
+package ua.bakery.db.jpa;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 import ua.bakery.services.ProgramSettings;
 
-/**
- * Лог дії користувача.
- * @author Vadym
- *
- */
+@Entity
+@Table(name="Log")
 public class Log {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateTime;
 	private String action;
+	
+	@ManyToOne
 	private User user;
-	
-	public Log(int id, Date dateTime, String action, User user){
-		setId(id);
-		setDateTime(dateTime);
-		setAction(action);
-		setUser(user);
-	}
-	
-	public Log(Date dateTime, String action, User user){
-		this(-1, dateTime, action, user);
-	}
-	
+
 	@Override
 	public String toString(){
 		return "[" + this.getClass().getName() + "] - id: " + id + ", DateTime: " + ProgramSettings.dateFormat.format(dateTime) +
-				", Action: " + action;
+				", Action: " + action + ", User: " + this.user.getUsername();
 	}
 	
 	/**

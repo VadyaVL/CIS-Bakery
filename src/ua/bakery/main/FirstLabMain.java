@@ -10,12 +10,17 @@ import java.util.Date;
 import java.util.List;
 
 import ua.bakery.db.entity.*;
+import ua.bakery.services.ProgramSettings;
+import ua.bakery.services.SqlQuery;
+import ua.bakery.services.SqlSettings;
 
-public class Main {
+@Deprecated
+public class FirstLabMain {
 
 	private static ArrayList<User> users;
 	private static ArrayList<Client> clients;
 	private static ArrayList<Request> requests;
+	
 	
 	public static void main(String[] args) {
 		demonstrateSelectUser();
