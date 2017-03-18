@@ -1,34 +1,28 @@
 package ua.bakery.db.jpa;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Client")
-public class Client {
+@Table(name = "ProductPrice")
+public class ProductPrice {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String name;
-	
+	@ManyToOne
+	private Production production;
 	@ManyToOne
 	private Place place;
-	
-	@OneToMany(mappedBy="Client")
-	private List<Request> requests = new ArrayList<>();	
+	float price;
 	
 	@Override
 	public String toString(){
-		return /*"Êë³ºíò ¹" + id + ": " + name + ", Ì³ñòî: " + this.place.getName()*/ this.name;
+		return this.production.getName() + " - " + this.place.getName() + ": " + this.price;
 	}
 
 	public int getId() {
@@ -39,12 +33,12 @@ public class Client {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public Production getProduction() {
+		return production;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProduction(Production production) {
+		this.production = production;
 	}
 
 	public Place getPlace() {
@@ -55,13 +49,12 @@ public class Client {
 		this.place = place;
 	}
 
-	public List<Request> getRequests() {
-		return requests;
+	public float getPrice() {
+		return price;
 	}
 
-	public void setRequests(List<Request> requests) {
-		this.requests = requests;
+	public void setPrice(float price) {
+		this.price = price;
 	}
-	
-	
+
 }

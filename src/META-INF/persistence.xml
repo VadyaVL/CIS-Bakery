@@ -10,6 +10,18 @@
         	<class>ua.bakery.db.jpa.Employee</class>
         	<class>ua.bakery.db.jpa.Production</class>
         	<class>ua.bakery.db.jpa.Request</class>
+        	<class>ua.bakery.db.jpa.Ingridient</class>
+        	<class>ua.bakery.db.jpa.OldNewReport</class>
+        	<class>ua.bakery.db.jpa.ProductionReportTeam</class>
+        	
+        	
+        	<class>ua.bakery.db.jpa.ProductPrice</class>
+        	<class>ua.bakery.db.jpa.ProductionIngridient</class>
+        	<class>ua.bakery.db.jpa.RequestProduction</class>
+        	<class>ua.bakery.db.jpa.WriteOff</class>
+        	<class>ua.bakery.db.jpa.ProductionOldNewReport</class>
+        	<class>ua.bakery.db.jpa.Brak</class>
+        	<class>ua.bakery.db.jpa.Produced</class>
 			 
 			 <properties>
 				<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

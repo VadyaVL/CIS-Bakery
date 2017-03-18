@@ -1,37 +1,34 @@
 package ua.bakery.db.jpa;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import ua.bakery.services.ProgramSettings;
-
 @Entity
-@Table(name="Log")
-public class Log {
+@Table(name = "OldNewReport")
+public class OldNewReport {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateTime;
-	private String action;
-	
+	private boolean old;
 	@ManyToOne
 	private User user;
-
-	@Override
-	public String toString(){
-		return "[" + this.getClass().getName() + "] - id: " + id + ", DateTime: " + ProgramSettings.dateFormat.format(dateTime) +
-				", Action: " + action + ", User: " + this.user.getUsername();
-	}
+	
+	@OneToMany(mappedBy="OldNewReport")
+	private List<ProductionOldNewReport> productionOldNewReports = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -49,12 +46,12 @@ public class Log {
 		this.dateTime = dateTime;
 	}
 
-	public String getAction() {
-		return action;
+	public boolean isOld() {
+		return old;
 	}
 
-	public void setAction(String action) {
-		this.action = action;
+	public void setOld(boolean old) {
+		this.old = old;
 	}
 
 	public User getUser() {
@@ -64,4 +61,13 @@ public class Log {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public List<ProductionOldNewReport> getProductionOldNewReports() {
+		return productionOldNewReports;
+	}
+
+	public void setProductionOldNewReports(List<ProductionOldNewReport> productionOldNewReports) {
+		this.productionOldNewReports = productionOldNewReports;
+	}	
+	
 }

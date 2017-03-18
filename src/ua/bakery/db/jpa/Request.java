@@ -1,12 +1,16 @@
 package ua.bakery.db.jpa;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,71 +33,69 @@ public class Request {
 	private Client client;
 	@ManyToOne
 	private User user;
-	
-	/*
-	// Реалізація Many-to-Many з додатковим полем кількість
-	private Map<Production, Float> productionCount = new LinkedHashMap<>();
-	
-	
-	public Map<Production, Float> getProductionCount() {
-		return productionCount;
-	}
 
-	public void setProductionCount(Map<Production, Float> productionCount) {
-		this.productionCount = productionCount;
-	}*/
-
+	@OneToMany(mappedBy="Request", cascade = CascadeType.ALL)	// PERSIST - при видаленні виникла помилка
+	private List<RequestProduction> requestProductionCount = new ArrayList<>();
 
 	@Override
 	public String toString(){
 		return "Заявка №" + id + ": " + date_Oformleniya + ": " + (ok ? "виконано": "не виконано");
 	}
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public Date getDateRequest() {
+
+	public Date getDate_Request() {
 		return date_Request;
 	}
-	
-	public void setDateRequest(Date dateRequest) {
-		this.date_Request = dateRequest;
+
+	public void setDate_Request(Date date_Request) {
+		this.date_Request = date_Request;
 	}
-	
-	public Date getDateOformleniya() {
+
+	public Date getDate_Oformleniya() {
 		return date_Oformleniya;
 	}
-	
-	public void setDateOformleniya(Date dateOformleniya) {
-		this.date_Oformleniya = dateOformleniya;
+
+	public void setDate_Oformleniya(Date date_Oformleniya) {
+		this.date_Oformleniya = date_Oformleniya;
 	}
-	
+
 	public boolean isOk() {
 		return ok;
 	}
-	
+
 	public void setOk(boolean ok) {
 		this.ok = ok;
 	}
-	
+
 	public Client getClient() {
 		return client;
 	}
-	
+
 	public void setClient(Client client) {
 		this.client = client;
 	}
-	
+
 	public User getUser() {
 		return user;
 	}
-	
+
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public List<RequestProduction> getRequestProductionCount() {
+		return requestProductionCount;
+	}
+
+	public void setRequestProductionCount(List<RequestProduction> requestProductionCount) {
+		this.requestProductionCount = requestProductionCount;
+	}
+	
 }
