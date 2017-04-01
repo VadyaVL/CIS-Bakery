@@ -120,4 +120,9 @@ public class Production {
 	public void setProduceds(List<Produced> produceds) {
 		this.produceds = produceds;
 	}	
+	
+	@Override
+	public String toString(){
+		return name;
+	}
 }
