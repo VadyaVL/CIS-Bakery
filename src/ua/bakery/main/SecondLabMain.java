@@ -2,6 +2,11 @@ package ua.bakery.main;
 
 import ua.bakery.logic.BusinessLogic;
 
+/**
+ * @author Vadym
+ * @deprecated
+ *
+ */
 public class SecondLabMain {
 	
     public static void main(String[] args) {

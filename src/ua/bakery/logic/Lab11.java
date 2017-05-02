@@ -19,6 +19,7 @@ import ua.bakery.db.jpa.User;
 /**
  * Клас для реалізації завдання з лабораторної роботи №11
  * @author Vadym
+ * @deprecated
  *
  */
 public class Lab11 {
@@ -184,8 +185,5 @@ public class Lab11 {
 		}
 		
 		System.out.println("--------------------------------------");
-		
 	}
-	
-
 }
