@@ -165,7 +165,7 @@ public class Lab11 {
 	 */
 	public static void showList(List<?> list){
 		
-		if(list.size() == 0){
+		if(list==null || list.size() == 0){
 			System.out.println("Список порожній!");
 			return;
 		}

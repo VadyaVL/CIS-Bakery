@@ -25,6 +25,11 @@ public class Place {
 	@OneToMany(mappedBy="Place")
 	private List<ProductPrice> productionPrice = new ArrayList<>();
 
+	@Override
+	public String toString(){
+		return this.id + " - " + this.name;
+	}
+	
 	public int getId() {
 		return id;
 	}

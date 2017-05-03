@@ -1,6 +1,11 @@
 package ua.bakery.db.DAO.impl;
 
 import ua.bakery.db.DAO.IIngridientDAO;
+import ua.bakery.db.jpa.Ingridient;
+
+import java.util.Collection;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -15,4 +20,116 @@ public class IngridientDAOImpl implements IIngridientDAO {
 	private static final String PERSISTENCE_UNIT_NAME = "CISBakeryJPA";
 	private EntityManagerFactory entityMF = null;
 	private EntityManager entityMng = null;
+	
+	public IngridientDAOImpl() {
+		entityMF = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+	}
+
+	@Override
+	public void saveIngridient(Ingridient ingridient) {
+		try {
+			entityMng = entityMF.createEntityManager();
+			entityMng.getTransaction().begin();
+			entityMng.persist(ingridient); // Сохранение экземпляра класса
+			entityMng.getTransaction().commit();
+		} catch (Exception e) {
+			new Exception("Помилка при збереженні!", e.getCause());
+		} finally {
+			if (entityMng != null && entityMng.isOpen()) {
+				entityMng.close();
+			}
+		}
+	}
+
+	@Override
+	public void updateIngridient(Ingridient ingridient) {
+		try {
+			entityMng = entityMF.createEntityManager();
+			entityMng.getTransaction().begin();
+			entityMng.merge(ingridient);
+			entityMng.getTransaction().commit();
+		} catch (Exception e) {
+			new Exception("Помилка при оновленні!", e.getCause());
+		} finally {
+			if (entityMng != null && entityMng.isOpen()) {
+				entityMng.close();
+			}
+		}
+	}
+
+	@Override
+	public Ingridient getIngridientById(Integer ingridient_id) {
+		Ingridient ingridient = null;
+		try {
+			entityMng = entityMF.createEntityManager();
+			entityMng.getTransaction().begin();
+			ingridient = entityMng.find(Ingridient.class, ingridient_id);
+			entityMng.getTransaction().commit();
+		} catch (Exception e) {
+			new Exception("Помилка 'findById'", e.getCause());
+		} finally {
+			if (entityMng != null && entityMng.isOpen()) {
+				entityMng.close();
+			}
+		}
+
+		return ingridient;
+	}
+
+	@Override
+	public Integer getAllIngridientCount() {
+		Integer cnt = null;
+		try {
+			entityMng = entityMF.createEntityManager();
+			entityMng.getTransaction().begin();
+			Query query = entityMng.createQuery("SELECT COUNT obj FROM Ingridient obj");
+			cnt = (Integer) query.getSingleResult();
+			entityMng.getTransaction().commit();
+		} catch (Exception e) {
+			new Exception("Помилка ", e.getCause());
+		} finally {
+			if (entityMng != null && entityMng.isOpen()) {
+				entityMng.close();
+			}
+		}
+
+		return cnt;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Collection<Ingridient> getAllIngridient() {
+		List<Ingridient> Ingridients = null;
+		try {
+			entityMng = entityMF.createEntityManager();
+			entityMng.getTransaction().begin();
+			Query query = entityMng.createQuery("SELECT obj from Ingridient obj");
+			Ingridients = (List<Ingridient>)query.getResultList();
+			entityMng.getTransaction().commit();
+		} catch (Exception e) {
+			new Exception("Помилка 'getAll'", e.getCause());
+		} finally {
+			if (entityMng != null && entityMng.isOpen()) {
+				entityMng.close();
+			}
+		}
+
+		return Ingridients;
+	}
+
+	@Override
+	public void deleteIngridient(Ingridient ingridient) {
+		try {
+			entityMng = entityMF.createEntityManager();
+			entityMng.getTransaction().begin();
+			entityMng.remove(ingridient);
+			entityMng.getTransaction().commit();
+		} catch (Exception e) {
+			new Exception("Помилка при видаленні!", e.getCause());
+		} finally {
+			if (entityMng != null && entityMng.isOpen()) {
+				entityMng.close();
+			}
+		}
+	}
 }
