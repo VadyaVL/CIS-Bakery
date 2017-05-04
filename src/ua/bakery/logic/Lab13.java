@@ -2,22 +2,25 @@ package ua.bakery.logic;
 
 import java.util.List;
 
+import ua.bakery.db.DAO.dependInjection.ClientDAO_DI;
 import ua.bakery.db.DAO.factory.DAOFactory;
+import ua.bakery.db.DAO.impl.ClientDAOImpl;
 import ua.bakery.db.jpa.Client;
 import ua.bakery.db.jpa.Place;
 import ua.bakery.db.jpa.ProductPrice;
 
-/**
- * Клас для реалізації завдання з лабораторної роботи №12
- * @author Vadym
- * @deprecated
- */
-public class Lab12 {
-	
-	public static void main(String[] args) {
-		String pattern = "%-40s %10s\n";
-		System.out.println("Price-list на продукцію по містам:");
+public class Lab13 {
 
+	public static void main(String[] args) {
+		String pattern = "%-35s %35s\n";
+		ClientDAO_DI diClient = new ClientDAO_DI(new ClientDAOImpl());
+		System.out.println("Всі клієнти:");
+		for(Client client : diClient.getAllClient()){
+			System.out.format(pattern, client.getName(), client.getPlace().getName());
+		}
+
+		System.out.println("*********************");
+		System.out.println("Прайс-лист по містам:");
 		List<Place> places = (List<Place>) DAOFactory.getInstance().getPlaceDAO().getAllPlace();
 		
 		for(Place place : places){
@@ -33,4 +36,5 @@ public class Lab12 {
 			}
 		}
 	}
+
 }
