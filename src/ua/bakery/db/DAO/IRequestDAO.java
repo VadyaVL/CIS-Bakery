@@ -8,7 +8,7 @@ import ua.bakery.db.jpa.Request;
 * @author vadym
 * @since 0.12
 */
-public interface IRequestDAO {
+public interface IRequestDAO extends IGenericDAO<Request> {
 	public void saveRequest(Request request);
 	public void updateRequest(Request request);
 	public Request getRequestById(Integer request_id);

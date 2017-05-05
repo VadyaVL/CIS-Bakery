@@ -1,5 +1,6 @@
 package ua.bakery.db.jpa;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +17,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "OldNewReport")
-public class OldNewReport {
+public class OldNewReport extends DomainSuperClass implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,7 @@
 package ua.bakery.db.DAO.impl;
 
 import ua.bakery.db.DAO.IProductionReportTeamDAO;
+import ua.bakery.db.jpa.Brak;
 import ua.bakery.db.jpa.ProductionReportTeam;
 
 import java.util.Collection;
@@ -16,14 +17,51 @@ import javax.persistence.EntityManagerFactory;
 * @author vadym
 * @since 0.12
 */
-public class ProductionReportTeamDAOImpl implements IProductionReportTeamDAO {
+public class ProductionReportTeamDAOImpl extends GenericDAOImpl<ProductionReportTeam> implements IProductionReportTeamDAO {
 	private static final String PERSISTENCE_UNIT_NAME = "CISBakeryJPA";
 	private EntityManagerFactory entityMF = null;
 	private EntityManager entityMng = null;
 	
+	
 	public ProductionReportTeamDAOImpl() {
-		entityMF = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		this(Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME));
 	}
+	
+	public ProductionReportTeamDAOImpl (EntityManagerFactory emf) {
+		super(ProductionReportTeam.class, emf); //Запускаем конструктор для GenericDAOImpl
+		this.entityMF = emf;
+	}
+
+	@Override
+	public void save(ProductionReportTeam entity) {
+		this.saveProductionReportTeam(entity);
+	}
+
+	@Override
+	public void update(ProductionReportTeam entity) {
+		this.updateProductionReportTeam(entity);
+	}
+
+	@Override
+	public void delete(ProductionReportTeam entity) {
+		this.deleteProductionReportTeam(entity);
+	}
+
+	@Override
+	public ProductionReportTeam getById(Integer entityId) {
+		return this.getProductionReportTeamById(entityId);
+	}
+
+	@Override
+	public Integer getAllCount() {
+		return this.getAllProductionReportTeamCount();
+	}
+
+	@Override
+	public Collection<ProductionReportTeam> getAll() {
+		return this.getAllProductionReportTeam();
+	}
+
 
 	@Override
 	public void saveProductionReportTeam(ProductionReportTeam productionreportteam) {

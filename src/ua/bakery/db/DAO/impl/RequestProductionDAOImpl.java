@@ -1,6 +1,7 @@
 package ua.bakery.db.DAO.impl;
 
 import ua.bakery.db.DAO.IRequestProductionDAO;
+import ua.bakery.db.jpa.Brak;
 import ua.bakery.db.jpa.RequestProduction;
 
 import java.util.Collection;
@@ -16,13 +17,49 @@ import javax.persistence.EntityManagerFactory;
 * @author vadym
 * @since 0.12
 */
-public class RequestProductionDAOImpl implements IRequestProductionDAO {
+public class RequestProductionDAOImpl extends GenericDAOImpl<RequestProduction> implements IRequestProductionDAO {
 	private static final String PERSISTENCE_UNIT_NAME = "CISBakeryJPA";
 	private EntityManagerFactory entityMF = null;
 	private EntityManager entityMng = null;
 	
+	
 	public RequestProductionDAOImpl() {
-		entityMF = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		this(Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME));
+	}
+	
+	public RequestProductionDAOImpl (EntityManagerFactory emf) {
+		super(RequestProduction.class, emf); //Запускаем конструктор для GenericDAOImpl
+		this.entityMF = emf;
+	}
+
+	@Override
+	public void save(RequestProduction entity) {
+		this.saveRequestProduction(entity);
+	}
+
+	@Override
+	public void update(RequestProduction entity) {
+		this.updateRequestProduction(entity);
+	}
+
+	@Override
+	public void delete(RequestProduction entity) {
+		this.deleteRequestProduction(entity);
+	}
+
+	@Override
+	public RequestProduction getById(Integer entityId) {
+		return this.getRequestProductionById(entityId);
+	}
+
+	@Override
+	public Integer getAllCount() {
+		return this.getAllRequestProductionCount();
+	}
+
+	@Override
+	public Collection<RequestProduction> getAll() {
+		return this.getAllRequestProduction();
 	}
 
 	@Override

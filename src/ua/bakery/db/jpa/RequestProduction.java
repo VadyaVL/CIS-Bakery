@@ -1,5 +1,7 @@
 package ua.bakery.db.jpa;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "RequestProduction")
-public class RequestProduction {
+public class RequestProduction extends DomainSuperClass implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

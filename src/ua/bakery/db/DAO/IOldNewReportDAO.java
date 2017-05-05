@@ -8,7 +8,7 @@ import ua.bakery.db.jpa.OldNewReport;
 * @author vadym
 * @since 0.12
 */
-public interface IOldNewReportDAO {
+public interface IOldNewReportDAO extends IGenericDAO<OldNewReport> {
 	public void saveOldNewReport(OldNewReport oldnewreport);
 	public void updateOldNewReport(OldNewReport oldnewreport);
 	public OldNewReport getOldNewReportById(Integer oldnewreport_id);

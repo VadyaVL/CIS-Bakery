@@ -8,7 +8,7 @@ import ua.bakery.db.jpa.ProductionIngridient;
 * @author vadym
 * @since 0.12
 */
-public interface IProductionIngridientDAO {
+public interface IProductionIngridientDAO extends IGenericDAO<ProductionIngridient> {
 
 	public void saveProductionIngridient(ProductionIngridient productioningridient);
 	public void updateProductionIngridient(ProductionIngridient productioningridient);

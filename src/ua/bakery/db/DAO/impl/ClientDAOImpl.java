@@ -16,15 +16,51 @@ import javax.persistence.Query;
  * @author vadym
  * @since 0.12
  */
-public class ClientDAOImpl implements IClientDAO {
+public class ClientDAOImpl extends GenericDAOImpl<Client> implements IClientDAO {
 
 	private static final String PERSISTENCE_UNIT_NAME = "CISBakeryJPA";
 	private EntityManagerFactory entityMF = null;
 	private EntityManager entityMng = null;
-
+	
 	public ClientDAOImpl() {
-		entityMF = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		this(Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME));
 	}
+	
+	public ClientDAOImpl (EntityManagerFactory emf) {
+		super(Client.class, emf); //Запускаем конструктор для GenericDAOImpl
+		this.entityMF = emf;
+	}
+
+	@Override
+	public void save(Client entity) {
+		this.saveClient(entity);
+	}
+
+	@Override
+	public void update(Client entity) {
+		this.updateClient(entity);
+	}
+
+	@Override
+	public void delete(Client entity) {
+		this.deleteClient(entity);
+	}
+
+	@Override
+	public Client getById(Integer entityId) {
+		return this.getClientById(entityId);
+	}
+
+	@Override
+	public Integer getAllCount() {
+		return this.getAllClientsCount();
+	}
+
+	@Override
+	public Collection<Client> getAll() {
+		return this.getAllClients();
+	}
+
 
 	@Override
 	public void saveClient(Client client) {

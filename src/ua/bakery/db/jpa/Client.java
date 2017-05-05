@@ -1,5 +1,6 @@
 package ua.bakery.db.jpa;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "Client")
-public class Client {
+public class Client extends DomainSuperClass implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,6 +63,4 @@ public class Client {
 	public void setRequests(List<Request> requests) {
 		this.requests = requests;
 	}
-	
-	
 }

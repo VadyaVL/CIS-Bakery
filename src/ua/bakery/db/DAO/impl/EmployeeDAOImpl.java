@@ -1,6 +1,7 @@
 package ua.bakery.db.DAO.impl;
 
 import ua.bakery.db.DAO.IEmployeeDAO;
+import ua.bakery.db.jpa.Brak;
 import ua.bakery.db.jpa.Employee;
 
 import java.util.Collection;
@@ -16,14 +17,51 @@ import javax.persistence.EntityManagerFactory;
 * @author vadym
 * @since 0.12
 */
-public class EmployeeDAOImpl implements IEmployeeDAO {
+public class EmployeeDAOImpl extends GenericDAOImpl<Employee> implements IEmployeeDAO {
 	private static final String PERSISTENCE_UNIT_NAME = "CISBakeryJPA";
 	private EntityManagerFactory entityMF = null;
 	private EntityManager entityMng = null;
 	
+	
 	public EmployeeDAOImpl() {
-		entityMF = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		this(Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME));
 	}
+	
+	public EmployeeDAOImpl (EntityManagerFactory emf) {
+		super(Employee.class, emf); //Запускаем конструктор для GenericDAOImpl
+		this.entityMF = emf;
+	}
+
+	@Override
+	public void save(Employee entity) {
+		this.saveEmployee(entity);
+	}
+
+	@Override
+	public void update(Employee entity) {
+		this.updateEmployee(entity);
+	}
+
+	@Override
+	public void delete(Employee entity) {
+		this.deleteEmployee(entity);
+	}
+
+	@Override
+	public Employee getById(Integer entityId) {
+		return this.getEmployeeById(entityId);
+	}
+
+	@Override
+	public Integer getAllCount() {
+		return this.getAllEmployeeCount();
+	}
+
+	@Override
+	public Collection<Employee> getAll() {
+		return this.getAllEmployee();
+	}
+
 
 	@Override
 	public void saveEmployee(Employee employee) {

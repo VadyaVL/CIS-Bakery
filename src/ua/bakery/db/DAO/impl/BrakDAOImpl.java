@@ -12,15 +12,51 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 /**
-* @author vadym
-* @since 0.12
-*/
-public class BrakDAOImpl implements IBrakDAO {
+ * @author vadym
+ * @since 0.12
+ */
+public class BrakDAOImpl extends GenericDAOImpl<Brak>  implements IBrakDAO {
 	private static final String PERSISTENCE_UNIT_NAME = "CISBakeryJPA";
 	private EntityManagerFactory entityMF = null;
 	private EntityManager entityMng = null;
+	
 	public BrakDAOImpl() {
-		entityMF = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		this(Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME));
+	}
+	
+	public BrakDAOImpl (EntityManagerFactory emf) {
+		super(Brak.class, emf); //Запускаем конструктор для GenericDAOImpl
+		this.entityMF = emf;
+	}
+	
+	@Override
+	public void save(Brak entity) {
+		this.saveBrak(entity);		
+	}
+
+	@Override
+	public void update(Brak entity) {
+		this.updateBrak(entity);
+	}
+
+	@Override
+	public void delete(Brak entity) {
+		this.deleteBrak(entity);
+	}
+
+	@Override
+	public Brak getById(Integer entityId) {
+		return this.getBrakById(entityId);
+	}
+
+	@Override
+	public Integer getAllCount() {
+		return this.getAllBrakCount();
+	}
+
+	@Override
+	public Collection<Brak> getAll() {
+		return this.getAllBrak();
 	}
 
 	@Override

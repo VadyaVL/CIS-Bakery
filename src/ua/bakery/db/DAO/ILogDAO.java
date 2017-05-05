@@ -8,7 +8,7 @@ import ua.bakery.db.jpa.Log;
 * @author vadym
 * @since 0.12
 */
-public interface ILogDAO {
+public interface ILogDAO extends IGenericDAO<Log> {
 	public void saveLog(Log log);
 	public void updateLog(Log log);
 	public Log getLogById(Integer log_id);

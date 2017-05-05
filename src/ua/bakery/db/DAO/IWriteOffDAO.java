@@ -8,7 +8,7 @@ import ua.bakery.db.jpa.WriteOff;
 * @author vadym
 * @since 0.12
 */
-public interface IWriteOffDAO {
+public interface IWriteOffDAO extends IGenericDAO<WriteOff> {
 	public void saveWriteOff(WriteOff writeoff);
 	public void updateWriteOff(WriteOff writeoff);
 	public WriteOff getWriteOffById(Integer writeoff_id);

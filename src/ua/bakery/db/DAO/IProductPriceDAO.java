@@ -8,7 +8,7 @@ import ua.bakery.db.jpa.ProductPrice;
 * @author vadym
 * @since 0.12
 */
-public interface IProductPriceDAO {
+public interface IProductPriceDAO extends IGenericDAO<ProductPrice> {
 	public void saveProductPrice(ProductPrice productprice);
 	public void updateProductPrice(ProductPrice productprice);
 	public ProductPrice getProductPriceById(Integer productprice_id);

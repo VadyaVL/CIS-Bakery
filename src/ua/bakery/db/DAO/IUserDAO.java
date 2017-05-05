@@ -8,7 +8,7 @@ import ua.bakery.db.jpa.User;
 * @author vadym
 * @since 0.12
 */
-public interface IUserDAO {
+public interface IUserDAO extends IGenericDAO<User> {
 	public void saveUser(User user);
 	public void updateUser(User user);
 	public User getUserById(Integer user_id);

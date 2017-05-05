@@ -1,6 +1,7 @@
 package ua.bakery.db.DAO.impl;
 
 import ua.bakery.db.DAO.IPlaceDAO;
+import ua.bakery.db.jpa.Brak;
 import ua.bakery.db.jpa.Client;
 import ua.bakery.db.jpa.Place;
 
@@ -16,14 +17,51 @@ import javax.persistence.Query;
  * @author vadym
  * @since 0.12
  */
-public class PlaceDAOImpl implements IPlaceDAO {
+public class PlaceDAOImpl extends GenericDAOImpl<Place> implements IPlaceDAO {
 	private static final String PERSISTENCE_UNIT_NAME = "CISBakeryJPA";
 	private EntityManagerFactory entityMF = null;
 	private EntityManager entityMng = null;
 
+	
 	public PlaceDAOImpl() {
-		entityMF = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		this(Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME));
 	}
+	
+	public PlaceDAOImpl (EntityManagerFactory emf) {
+		super(Place.class, emf); //Запускаем конструктор для GenericDAOImpl
+		this.entityMF = emf;
+	}
+
+	@Override
+	public void save(Place entity) {
+		this.savePlace(entity);
+	}
+
+	@Override
+	public void update(Place entity) {
+		this.updatePlace(entity);
+	}
+
+	@Override
+	public void delete(Place entity) {
+		this.deletePlace(entity);
+	}
+
+	@Override
+	public Place getById(Integer entityId) {
+		return this.getPlaceById(entityId);
+	}
+
+	@Override
+	public Integer getAllCount() {
+		return this.getAllPlaceCount();
+	}
+
+	@Override
+	public Collection<Place> getAll() {
+		return this.getAllPlace();
+	}
+
 
 	@Override
 	public void savePlace(Place place) {

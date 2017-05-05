@@ -1,6 +1,7 @@
 package ua.bakery.db.DAO.impl;
 
 import ua.bakery.db.DAO.IProductionOldNewReportDAO;
+import ua.bakery.db.jpa.Brak;
 import ua.bakery.db.jpa.ProductionOldNewReport;
 
 import java.util.Collection;
@@ -16,14 +17,51 @@ import javax.persistence.EntityManagerFactory;
 * @author vadym
 * @since 0.12
 */
-public class ProductionOldNewReportDAOImpl implements IProductionOldNewReportDAO {
+public class ProductionOldNewReportDAOImpl extends GenericDAOImpl<ProductionOldNewReport> implements IProductionOldNewReportDAO {
 	private static final String PERSISTENCE_UNIT_NAME = "CISBakeryJPA";
 	private EntityManagerFactory entityMF = null;
 	private EntityManager entityMng = null;
 	
+	
 	public ProductionOldNewReportDAOImpl() {
-		entityMF = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		this(Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME));
 	}
+	
+	public ProductionOldNewReportDAOImpl (EntityManagerFactory emf) {
+		super(ProductionOldNewReport.class, emf); //Запускаем конструктор для GenericDAOImpl
+		this.entityMF = emf;
+	}
+
+	@Override
+	public void save(ProductionOldNewReport entity) {
+		this.saveProductionOldNewReport(entity);
+	}
+
+	@Override
+	public void update(ProductionOldNewReport entity) {
+		this.updateProductionOldNewReport(entity);
+	}
+
+	@Override
+	public void delete(ProductionOldNewReport entity) {
+		this.deleteProductionOldNewReport(entity);
+	}
+
+	@Override
+	public ProductionOldNewReport getById(Integer entityId) {
+		return this.getProductionOldNewReportById(entityId);
+	}
+
+	@Override
+	public Integer getAllCount() {
+		return this.getAllProductionOldNewReportCount();
+	}
+
+	@Override
+	public Collection<ProductionOldNewReport> getAll() {
+		return this.getAllProductionOldNewReport();
+	}
+
 
 	@Override
 	public void saveProductionOldNewReport(ProductionOldNewReport productionoldnewreport) {

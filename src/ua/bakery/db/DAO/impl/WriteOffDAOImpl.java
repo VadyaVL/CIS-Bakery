@@ -1,6 +1,7 @@
 package ua.bakery.db.DAO.impl;
 
 import ua.bakery.db.DAO.IWriteOffDAO;
+import ua.bakery.db.jpa.Brak;
 import ua.bakery.db.jpa.WriteOff;
 
 import java.util.Collection;
@@ -16,13 +17,49 @@ import javax.persistence.EntityManagerFactory;
 * @author vadym
 * @since 0.12
 */
-public class WriteOffDAOImpl implements IWriteOffDAO {
+public class WriteOffDAOImpl extends GenericDAOImpl<WriteOff> implements IWriteOffDAO {
 	private static final String PERSISTENCE_UNIT_NAME = "CISBakeryJPA";
 	private EntityManagerFactory entityMF = null;
 	private EntityManager entityMng = null;
 	
+	
 	public WriteOffDAOImpl() {
-		entityMF = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		this(Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME));
+	}
+	
+	public WriteOffDAOImpl (EntityManagerFactory emf) {
+		super(WriteOff.class, emf); //Запускаем конструктор для GenericDAOImpl
+		this.entityMF = emf;
+	}
+
+	@Override
+	public void save(WriteOff entity) {
+		this.saveWriteOff(entity);
+	}
+
+	@Override
+	public void update(WriteOff entity) {
+		this.updateWriteOff(entity);
+	}
+
+	@Override
+	public void delete(WriteOff entity) {
+		this.deleteWriteOff(entity);
+	}
+
+	@Override
+	public WriteOff getById(Integer entityId) {
+		return this.getWriteOffById(entityId);
+	}
+
+	@Override
+	public Integer getAllCount() {
+		return this.getAllWriteOffCount();
+	}
+
+	@Override
+	public Collection<WriteOff> getAll() {
+		return this.getAllWriteOff();
 	}
 
 	@Override

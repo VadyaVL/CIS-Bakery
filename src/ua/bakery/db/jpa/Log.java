@@ -1,5 +1,6 @@
 package ua.bakery.db.jpa;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -15,7 +16,7 @@ import ua.bakery.services.ProgramSettings;
 
 @Entity
 @Table(name="Log")
-public class Log {
+public class Log extends DomainSuperClass implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

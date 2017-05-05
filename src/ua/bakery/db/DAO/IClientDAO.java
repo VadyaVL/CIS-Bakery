@@ -9,7 +9,7 @@ import ua.bakery.db.jpa.Place;
 * @author vadym
 * @since 0.12
 */
-public interface IClientDAO {
+public interface IClientDAO extends IGenericDAO<Client> {
 	public void saveClient(Client client);
 	public void updateClient(Client client);
 	public Client getClientById(Integer client_id);

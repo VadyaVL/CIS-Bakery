@@ -1,6 +1,7 @@
 package ua.bakery.db.DAO.impl;
 
 import ua.bakery.db.DAO.IIngridientDAO;
+import ua.bakery.db.jpa.Brak;
 import ua.bakery.db.jpa.Ingridient;
 
 import java.util.Collection;
@@ -16,14 +17,51 @@ import javax.persistence.EntityManagerFactory;
 * @author vadym
 * @since 0.12
 */
-public class IngridientDAOImpl implements IIngridientDAO {
+public class IngridientDAOImpl extends GenericDAOImpl<Ingridient> implements IIngridientDAO {
 	private static final String PERSISTENCE_UNIT_NAME = "CISBakeryJPA";
 	private EntityManagerFactory entityMF = null;
 	private EntityManager entityMng = null;
 	
+	
 	public IngridientDAOImpl() {
-		entityMF = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		this(Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME));
 	}
+	
+	public IngridientDAOImpl (EntityManagerFactory emf) {
+		super(Ingridient.class, emf); //Запускаем конструктор для GenericDAOImpl
+		this.entityMF = emf;
+	}
+
+	@Override
+	public void save(Ingridient entity) {
+		this.saveIngridient(entity);
+	}
+
+	@Override
+	public void update(Ingridient entity) {
+		this.updateIngridient(entity);
+	}
+
+	@Override
+	public void delete(Ingridient entity) {
+		this.deleteIngridient(entity);
+	}
+
+	@Override
+	public Ingridient getById(Integer entityId) {
+		return this.getIngridientById(entityId);
+	}
+
+	@Override
+	public Integer getAllCount() {
+		return this.getAllIngridientCount();
+	}
+
+	@Override
+	public Collection<Ingridient> getAll() {
+		return this.getAllIngridient();
+	}
+
 
 	@Override
 	public void saveIngridient(Ingridient ingridient) {

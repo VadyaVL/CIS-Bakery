@@ -1,6 +1,7 @@
 package ua.bakery.db.DAO.impl;
 
 import ua.bakery.db.DAO.IProductPriceDAO;
+import ua.bakery.db.jpa.Brak;
 import ua.bakery.db.jpa.ProductPrice;
 
 import java.util.Collection;
@@ -16,14 +17,51 @@ import javax.persistence.EntityManagerFactory;
 * @author vadym
 * @since 0.12
 */
-public class ProductPriceDAOImpl implements IProductPriceDAO {
+public class ProductPriceDAOImpl extends GenericDAOImpl<ProductPrice> implements IProductPriceDAO {
 	private static final String PERSISTENCE_UNIT_NAME = "CISBakeryJPA";
 	private EntityManagerFactory entityMF = null;
 	private EntityManager entityMng = null;
 	
+	
 	public ProductPriceDAOImpl() {
-		entityMF = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		this(Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME));
 	}
+	
+	public ProductPriceDAOImpl (EntityManagerFactory emf) {
+		super(ProductPrice.class, emf); //Запускаем конструктор для GenericDAOImpl
+		this.entityMF = emf;
+	}
+
+	@Override
+	public void save(ProductPrice entity) {
+		this.saveProductPrice(entity);
+	}
+
+	@Override
+	public void update(ProductPrice entity) {
+		this.updateProductPrice(entity);
+	}
+
+	@Override
+	public void delete(ProductPrice entity) {
+		this.deleteProductPrice(entity);
+	}
+
+	@Override
+	public ProductPrice getById(Integer entityId) {
+		return this.getProductPriceById(entityId);
+	}
+
+	@Override
+	public Integer getAllCount() {
+		return this.getAllProductPriceCount();
+	}
+
+	@Override
+	public Collection<ProductPrice> getAll() {
+		return this.getAllProductPrice();
+	}
+
 
 	@Override
 	public void saveProductPrice(ProductPrice productprice) {

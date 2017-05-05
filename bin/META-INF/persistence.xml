@@ -3,6 +3,8 @@
 		<persistence-unit name="CISBakeryJPA" transaction-type="RESOURCE_LOCAL">
 			<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 			
+			<class>ua.bakery.db.jpa.DomainSuperClass</class>
+			
         	<class>ua.bakery.db.jpa.User</class>
         	<class>ua.bakery.db.jpa.Log</class>
         	<class>ua.bakery.db.jpa.Client</class>

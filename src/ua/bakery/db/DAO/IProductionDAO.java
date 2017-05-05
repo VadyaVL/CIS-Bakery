@@ -8,7 +8,7 @@ import ua.bakery.db.jpa.Production;
 * @author vadym
 * @since 0.12
 */
-public interface IProductionDAO {
+public interface IProductionDAO extends IGenericDAO<Production> {
 	public void saveProduction(Production production);
 	public void updateProduction(Production production);
 	public Production getProductionById(Integer production_id);

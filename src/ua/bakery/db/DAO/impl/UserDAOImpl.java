@@ -1,6 +1,7 @@
 package ua.bakery.db.DAO.impl;
 
 import ua.bakery.db.DAO.IUserDAO;
+import ua.bakery.db.jpa.Brak;
 import ua.bakery.db.jpa.User;
 
 import java.util.Collection;
@@ -16,13 +17,49 @@ import javax.persistence.EntityManagerFactory;
 * @author vadym
 * @since 0.12
 */
-public class UserDAOImpl implements IUserDAO {
+public class UserDAOImpl extends GenericDAOImpl<User> implements IUserDAO {
 	private static final String PERSISTENCE_UNIT_NAME = "CISBakeryJPA";
 	private EntityManagerFactory entityMF = null;
 	private EntityManager entityMng = null;
 	
+	
 	public UserDAOImpl() {
-		entityMF = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		this(Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME));
+	}
+	
+	public UserDAOImpl (EntityManagerFactory emf) {
+		super(User.class, emf); //Запускаем конструктор для GenericDAOImpl
+		this.entityMF = emf;
+	}
+
+	@Override
+	public void save(User entity) {
+		this.saveUser(entity);
+	}
+
+	@Override
+	public void update(User entity) {
+		this.updateUser(entity);
+	}
+
+	@Override
+	public void delete(User entity) {
+		this.deleteUser(entity);
+	}
+
+	@Override
+	public User getById(Integer entityId) {
+		return this.getUserById(entityId);
+	}
+
+	@Override
+	public Integer getAllCount() {
+		return this.getAllUserCount();
+	}
+
+	@Override
+	public Collection<User> getAll() {
+		return this.getAllUser();
 	}
 
 	@Override

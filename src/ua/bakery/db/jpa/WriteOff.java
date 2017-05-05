@@ -1,5 +1,6 @@
 package ua.bakery.db.jpa;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "WriteOff")
-public class WriteOff {
+public class WriteOff extends DomainSuperClass implements Serializable {
 	
 
 	@Id

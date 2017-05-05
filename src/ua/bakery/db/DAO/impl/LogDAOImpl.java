@@ -1,6 +1,7 @@
 package ua.bakery.db.DAO.impl;
 
 import ua.bakery.db.DAO.ILogDAO;
+import ua.bakery.db.jpa.Brak;
 import ua.bakery.db.jpa.Log;
 
 import java.util.Collection;
@@ -16,14 +17,51 @@ import javax.persistence.EntityManagerFactory;
 * @author vadym
 * @since 0.12
 */
-public class LogDAOImpl implements ILogDAO {
+public class LogDAOImpl extends GenericDAOImpl<Log> implements ILogDAO {
 	private static final String PERSISTENCE_UNIT_NAME = "CISBakeryJPA";
 	private EntityManagerFactory entityMF = null;
 	private EntityManager entityMng = null;
 	
+	
 	public LogDAOImpl() {
-		entityMF = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		this(Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME));
 	}
+	
+	public LogDAOImpl (EntityManagerFactory emf) {
+		super(Log.class, emf); //Запускаем конструктор для GenericDAOImpl
+		this.entityMF = emf;
+	}
+
+	@Override
+	public void save(Log entity) {
+		this.saveLog(entity);
+	}
+
+	@Override
+	public void update(Log entity) {
+		this.updateLog(entity);
+	}
+
+	@Override
+	public void delete(Log entity) {
+		this.deleteLog(entity);
+	}
+
+	@Override
+	public Log getById(Integer entityId) {
+		return this.getLogById(entityId);
+	}
+
+	@Override
+	public Integer getAllCount() {
+		return this.getAllLogCount();
+	}
+
+	@Override
+	public Collection<Log> getAll() {
+		return this.getAllLog();
+	}
+
 
 	@Override
 	public void saveLog(Log log) {

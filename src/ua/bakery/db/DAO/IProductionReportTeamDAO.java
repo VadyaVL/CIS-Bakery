@@ -8,7 +8,7 @@ import ua.bakery.db.jpa.ProductionReportTeam;
 * @author vadym
 * @since 0.12
 */
-public interface IProductionReportTeamDAO {
+public interface IProductionReportTeamDAO extends IGenericDAO<ProductionReportTeam> {
 	public void saveProductionReportTeam(ProductionReportTeam productionreportteam);
 	public void updateProductionReportTeam(ProductionReportTeam productionreportteam);
 	public ProductionReportTeam getProductionReportTeamById(Integer productionreportteam_id);

@@ -8,7 +8,7 @@ import ua.bakery.db.jpa.RequestProduction;
 * @author vadym
 * @since 0.12
 */
-public interface IRequestProductionDAO {
+public interface IRequestProductionDAO extends IGenericDAO<RequestProduction> {
 	public void saveRequestProduction(RequestProduction requestproduction);
 	public void updateRequestProduction(RequestProduction requestproduction);
 	public RequestProduction getRequestProductionById(Integer requestproduction_id);
