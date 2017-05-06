@@ -21,7 +21,7 @@ public class Employee extends DomainSuperClass implements Serializable {
 	private String fullName;
 	
 	@OneToMany(mappedBy="Employee")
-	private List<WriteOff> writeOffs = new ArrayList<>();
+	private List<WriteOff> writeOffs = new ArrayList<WriteOff>();
 
 	public int getId() {
 		return id;

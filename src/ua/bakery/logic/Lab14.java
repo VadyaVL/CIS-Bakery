@@ -11,6 +11,7 @@ import ua.bakery.db.jpa.ProductPrice;
 /**
  * Клас для реалізації завдання з лабораторної роботи №14
  * @author Vadym
+ * @deprecated
  */
 public class Lab14 {
 

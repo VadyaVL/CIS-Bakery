@@ -28,10 +28,10 @@ public class ProductionReportTeam extends DomainSuperClass implements Serializab
 	private Date dateTime;
 
 	@OneToMany(mappedBy="ProductionReportTeam")
-	private List<Brak> braks = new ArrayList<>();	
+	private List<Brak> braks = new ArrayList<Brak>();	
 	
 	@OneToMany(mappedBy="ProductionReportTeam")
-	private List<Produced> produceds = new ArrayList<>();
+	private List<Produced> produceds = new ArrayList<Produced>();
 
 	public int getId() {
 		return id;

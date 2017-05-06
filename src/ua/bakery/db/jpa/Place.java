@@ -21,10 +21,10 @@ public class Place extends DomainSuperClass implements Serializable {
 	private String name;
 	
 	@OneToMany(mappedBy="Place")
-	private List<Client> clients = new ArrayList<>();
+	private List<Client> clients = new ArrayList<Client>();
 	
 	@OneToMany(mappedBy="Place")
-	private List<ProductPrice> productionPrice = new ArrayList<>();
+	private List<ProductPrice> productionPrice = new ArrayList<ProductPrice>();
 
 	@Override
 	public String toString(){

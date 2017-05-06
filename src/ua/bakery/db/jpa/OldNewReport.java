@@ -29,7 +29,7 @@ public class OldNewReport extends DomainSuperClass implements Serializable {
 	private User user;
 	
 	@OneToMany(mappedBy="OldNewReport")
-	private List<ProductionOldNewReport> productionOldNewReports = new ArrayList<>();
+	private List<ProductionOldNewReport> productionOldNewReports = new ArrayList<ProductionOldNewReport>();
 
 	public int getId() {
 		return id;

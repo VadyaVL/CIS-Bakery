@@ -22,7 +22,7 @@ public class Ingridient extends DomainSuperClass implements Serializable {
 	private float countOnStorage;
 	
 	@OneToMany(mappedBy="Ingridient")
-	private List<ProductionIngridient> productionIngridientCount = new ArrayList<>();
+	private List<ProductionIngridient> productionIngridientCount = new ArrayList<ProductionIngridient>();
 
 	public int getId() {
 		return id;

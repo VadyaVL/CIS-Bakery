@@ -25,7 +25,7 @@ public class Client extends DomainSuperClass implements Serializable {
 	private Place place;
 	
 	@OneToMany(mappedBy="Client")
-	private List<Request> requests = new ArrayList<>();	
+	private List<Request> requests = new ArrayList<Request>();	
 	
 	@Override
 	public String toString(){

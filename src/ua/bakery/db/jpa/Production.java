@@ -22,25 +22,25 @@ public class Production extends DomainSuperClass implements Serializable {
 	private float countOnStorage;	// Кількість наявного на складі
 
 	@OneToMany(mappedBy="Production")
-	private List<ProductPrice> productionPrice = new ArrayList<>();
+	private List<ProductPrice> productionPrice = new ArrayList<ProductPrice>();
 	
 	@OneToMany(mappedBy="Production")
-	private List<ProductionIngridient> productionIngridient = new ArrayList<>();
+	private List<ProductionIngridient> productionIngridient = new ArrayList<ProductionIngridient>();
 	
 	@OneToMany(mappedBy="Production")
-	private List<RequestProduction> requestProductionCount = new ArrayList<>();
+	private List<RequestProduction> requestProductionCount = new ArrayList<RequestProduction>();
 
 	@OneToMany(mappedBy="Production")
-	private List<WriteOff> writeOffs = new ArrayList<>();	
+	private List<WriteOff> writeOffs = new ArrayList<WriteOff>();	
 	
 	@OneToMany(mappedBy="Production")
-	private List<ProductionOldNewReport> productionOldNewReports = new ArrayList<>();	
+	private List<ProductionOldNewReport> productionOldNewReports = new ArrayList<ProductionOldNewReport>();	
 	
 	@OneToMany(mappedBy="Production")
-	private List<Brak> braks = new ArrayList<>();	
+	private List<Brak> braks = new ArrayList<Brak>();	
 	
 	@OneToMany(mappedBy="Production")
-	private List<Produced> produceds = new ArrayList<>();
+	private List<Produced> produceds = new ArrayList<Produced>();
 
 	public int getId() {
 		return id;

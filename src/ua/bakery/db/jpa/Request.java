@@ -36,7 +36,7 @@ public class Request extends DomainSuperClass implements Serializable {
 	private User user;
 
 	@OneToMany(mappedBy="Request", cascade = CascadeType.ALL)	// PERSIST - при видаленні виникла помилка
-	private List<RequestProduction> requestProductionCount = new ArrayList<>();
+	private List<RequestProduction> requestProductionCount = new ArrayList<RequestProduction>();
 
 	@Override
 	public String toString(){

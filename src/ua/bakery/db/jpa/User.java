@@ -26,19 +26,19 @@ public class User extends DomainSuperClass implements Serializable {
 	private int accessLevel;	// Рівень прав доступу, рекомендується замінити на enum
 
 	@OneToMany(mappedBy="user")
-	private List<Log> logs = new ArrayList<>();		// Логи користувача
+	private List<Log> logs = new ArrayList<Log>();		// Логи користувача
 
 	@OneToMany(mappedBy="user")
-	private List<Request> requests = new ArrayList<>();	
+	private List<Request> requests = new ArrayList<Request>();	
 
 	@OneToMany(mappedBy="user")
-	private List<WriteOff> writeOffs = new ArrayList<>();	
+	private List<WriteOff> writeOffs = new ArrayList<WriteOff>();	
 
 	@OneToMany(mappedBy="user")
-	private List<OldNewReport> OldNewReports = new ArrayList<>();	
+	private List<OldNewReport> OldNewReports = new ArrayList<OldNewReport>();	
 	
 	@OneToMany(mappedBy="user")
-	private List<ProductionReportTeam> productionReportTeams = new ArrayList<>();	
+	private List<ProductionReportTeam> productionReportTeams = new ArrayList<ProductionReportTeam>();	
 	
 	@Override
 	public String toString(){
