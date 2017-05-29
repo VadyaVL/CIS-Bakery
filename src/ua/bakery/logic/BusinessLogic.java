@@ -27,8 +27,21 @@ public final class BusinessLogic {
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		EntityManager em = factory.createEntityManager();
 		
+		Place pl = new Place();
+		pl.setName("Kyiv, Kowalskii 5NNNN");
+		
+		Client us = new Client();
+		us.setName("KUKUNNNN");
+		us.setPlace(pl);
+		
+		em.getTransaction().begin();
+        em.persist(us);
+        em.getTransaction().commit();
+        em.close();
+		
+		
 		// Отримаємо існуючого користувача і клієнта
-		User user = (User) em.find(User.class, 2);
+		/*User user = (User) em.find(User.class, 2);
 		Client client = (Client) em.find(Client.class, 4);
 		System.out.println("Користувач: " + user.toString());
 		System.out.println("Клієнт    : " + client.toString());
@@ -78,7 +91,8 @@ public final class BusinessLogic {
         em.close();
         System.out.println("************СТВОРЕНО************");
         
-        return request.getId();
+        return request.getId();*/
+        return 0;
 	}
 	
 	// Помножити кількість продукції на два

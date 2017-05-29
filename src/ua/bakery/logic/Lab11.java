@@ -72,7 +72,7 @@ public class Lab11 {
 		
 		// Отримаємо всі продукти
 		Query q = em.createQuery("select product from Production product");
-        @SuppressWarnings("unchecked")
+        
 		List<Production> productions = q.getResultList();
 
 		// Створимо замовлення

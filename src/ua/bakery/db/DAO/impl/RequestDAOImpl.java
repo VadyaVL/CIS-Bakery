@@ -1,9 +1,11 @@
 package ua.bakery.db.DAO.impl;
 
 import ua.bakery.db.DAO.IRequestDAO;
+import ua.bakery.db.DAO.factory.DAOFactory;
 import ua.bakery.db.jpa.Brak;
 import ua.bakery.db.jpa.Request;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -169,5 +171,19 @@ public class RequestDAOImpl extends GenericDAOImpl<Request> implements IRequestD
 				entityMng.close();
 			}
 		}
+	}
+
+
+	@Override
+	public Collection<Request> getRequestByUserRealName(String name) {
+		List<Request> requests = (List<Request>) getAll();
+		List<Request> needed = new ArrayList<>();
+		
+		for(Request r : requests){
+			if(r.getUser().getRealName().equals(name))
+				needed.add(r);
+		}
+		
+		return needed;
 	}
 }
